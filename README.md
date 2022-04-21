@@ -6,11 +6,11 @@ T-WEB-800 Epitech
 
 git checkout -b TYPE1-TYPE2-DESCRIPTION
 
-Type1:
+#### Type1:
 - back
 - front
 - devops
-Type2: 
+#### Type2:
 - feat
 - fix
 - docs
@@ -19,7 +19,7 @@ Type2:
 - perf
 - test
 
-Exemple:
+#### Exemple:
 ```bash
 git checkout -b back-feat-init-rails
 ```
@@ -31,8 +31,11 @@ PR before push on staging/main !
 
 branch feature -> (step1) -> staging -> (step2) -> main -> (step3)
 
-step1 : Tests
-step2 : If Step 1 ok, push to main
-step3 : Auto-deploy back and front with tests
+#### Step1
+- Tests
+#### Step 2
+- If Step 1 ok, push to main
+#### Step 3
+- Auto-deploy back and front with tests
 
 For push in production : min. 1 feat, fix, perf, test. Docs, styles, refacto are waiting an another type.
