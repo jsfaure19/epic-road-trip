@@ -2,7 +2,7 @@
 T-WEB-800 Epitech
 
 ## Dev guide 
-Creating branch:
+### Creating branch
 
 git checkout -b TYPE-DESCRIPTION
 
@@ -15,7 +15,10 @@ Type:
 - perf
 - test
 
-Example:
+Exemple:
 ```bash
 git checkout -b feat-init-rails
 ```
+### PR and Push to production
+
+PR before push on staging/main ! 
