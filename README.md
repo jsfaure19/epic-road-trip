@@ -39,3 +39,12 @@ branch feature -> (step1) -> staging -> (step2) -> main -> (step3)
 - Auto-deploy back and front with tests
 
 For push in production : min. 1 feat, fix, perf, test. Docs, styles, refacto are waiting an another type.
+
+## Front
+- cd front
+
+### Install
+- npm install 
+
+### Start
+- npm start
