@@ -1,5 +1,5 @@
-FROM ruby:3.0
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+FROM ruby:3.1.2
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client cmake
 RUN mkdir /rails-react-app
 WORKDIR /rails-react-app
 COPY Gemfile /rails-react-app/Gemfile
