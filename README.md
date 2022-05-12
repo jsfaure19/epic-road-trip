@@ -27,7 +27,7 @@ git checkout -b back-feat-init-rails
 
 PR before push on staging/main !
 
-### Workflow
+## Workflow
 
 branch feature -> (step1) -> staging -> (step2) -> main -> (step3)
 
@@ -36,6 +36,30 @@ branch feature -> (step1) -> staging -> (step2) -> main -> (step3)
 #### Step 2
 - If Step 1 ok, push to main
 #### Step 3
-- Auto-deploy back and front with tests
+- Auto-deploy back with tests
 
 For push in production : min. 1 feat, fix, perf, test. Docs, styles, refacto are waiting an another type.
+
+## Front
+- cd front
+
+### Install
+- npm install 
+
+### Start
+- npm start
+
+## Backend RoR
+
+### Install
+
+https://www.ruby-lang.org/en/documentation/installation/
+
+### Start 
+
+bundle exec rails s 
+
+### Console 
+
+bundle exec rails c 
+
