@@ -64,3 +64,14 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+require 'devise/jwt/test_helpers'
+
+def jwt_headers(user)
+  host! 'www.example.com'
+  headers = {'Accept' => 'application/json', 'Content-Type' => 'application/json'}
+  Devise::JWT::TestHelpers.auth_headers(headers, user)
+end
+def bad_jwt_headers
+  host! 'www.example.com'
+  {'Accept' => 'application/json', 'Content-Type' => 'application/json', 'HTTP_AUTHORIZATION' => "Bearer wrong"}
+end
