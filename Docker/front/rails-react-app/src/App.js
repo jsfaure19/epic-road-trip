@@ -1,5 +1,3 @@
-
-import Index from './markup/Markup';
 import logo from "./logo.svg";
 //import "./App.css";
 import { Link } from "react-router-dom";
@@ -30,7 +28,6 @@ function App() {
             <Link to="/login">Login</Link>
           </nav>
         </header>
-        <Index / >
       </div>
     </div>
   );

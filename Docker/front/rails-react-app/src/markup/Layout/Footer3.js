@@ -70,7 +70,7 @@ class Footer2 extends Component{
 				<div className="footer-bottom">
 					<div className="container">
 						<div className="row">
-							<div className="col-md-6 col-sm-12 text-left"> <span>Copyright © 2019 DexignZone</span> </div>
+							<div className="col-md-6 col-sm-12 text-left"> <span>Copyright © 2022 EpicRoadTrip</span> </div>
 							<div className="col-md-6 col-sm-12 text-right"> 
 								<div className="widget-link "> 
 									<ul>
