@@ -1,13 +1,8 @@
 FROM node:16-alpine
 # Create and define the node_modules's cache directory.
-RUN mkdir /usr/src/cache
-WORKDIR /usr/src/cache
+WORKDIR /usr/src/app
 
 # Install the application's dependencies into the node_modules's cache directory.
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
-
-# Create and define the application's working directory.
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
+COPY ./rails-react-app/package.json ./
+COPY ./rails-react-app/package-lock.json ./
+RUN ./rails-react-app/npm install --silent
