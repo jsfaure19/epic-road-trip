@@ -1,6 +1,14 @@
+
+import Index from './markup/Markup';
 import logo from "./logo.svg";
-import "./App.css";
+//import "./App.css";
 import { Link } from "react-router-dom";
+import './css/plugins.css';
+import './css/style.css';
+import './css/templete.css';
+import './css/skin/skin-1.css';
+import './plugins/slick/slick.min.css';
+import './plugins/slick/slick-theme.min.css';
 
 function App() {
   return (
@@ -18,8 +26,11 @@ function App() {
             }}
           >
             <Link to="/trip">Trip</Link>
+            <Link to="/homepage">Homepage</Link>
+            <Link to="/login">Login</Link>
           </nav>
         </header>
+        <Index / >
       </div>
     </div>
   );
