@@ -41,6 +41,9 @@ gem "rack-cors"
 gem 'devise'
 gem 'devise-jwt'
 
+# Api calls
+gem 'httparty'
+
 group :development, :test do
   # Call 'byebug' or 'binding.pry' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
