@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./front:/usr/src/app
-    command: sh -c "cd rails-react-app &&yarn start"
+    command: sh -c "cd rails-react-app && npm start"
     ports:
       - "8000:3000"
 volumes:
