@@ -1,5 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   include RackSessionFixController
+  wrap_parameters format: [:json, :xml, :url_encoded_form, :multipart_form]
+  wrap_parameters :user, include: [:email, :password]
   respond_to :json
 
   private
@@ -15,6 +17,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def register_failed
-    render json: { message: "Something went wrong." }
+    render json: {status: 400, error: "Bad request." }, :status => :bad_request
   end
 end

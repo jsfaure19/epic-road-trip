@@ -1,6 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
   include RackSessionFixController
   respond_to :json
+  wrap_parameters format: [:json, :xml, :url_encoded_form, :multipart_form]
+  wrap_parameters :user, include: [:email, :password]
 
   private
 
