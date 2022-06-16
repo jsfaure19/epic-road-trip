@@ -6,10 +6,8 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: passdev
-    ports:
-      - "5432"
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'password'
   api:
     build:
       context: ./api/
@@ -19,7 +17,6 @@ services:
     volumes:
       - ./api:/rails-react-app
       - ./api/vendor/bundle:/rails-react-app/vendor/bundle
-    env_file: api/.env
     environment:
       RAILS_ENV: development
     ports:
@@ -27,12 +24,12 @@ services:
     depends_on:
       - db
   front:
-    build:
+    build: 
       context: ./front/
       dockerfile: Dockerfile
     volumes:
       - ./front:/usr/src/app
-    command: sh -c "cd rails-react-app && yarn start"
+    command: sh -c "cd rails-react-app && npm i && npm start"
     ports:
       - "8000:3000"
 volumes:
