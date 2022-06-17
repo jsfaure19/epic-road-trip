@@ -33,10 +33,24 @@ RSpec.describe 'users/registrations', type: :request do
     end
   end
 
-  path '/users/sign_out.json' do
-    post "Sign out a user" do
-      tags 'Users'
-      consumes 'application/json'
-    end
-  end
+  # path '/users/sign_out.json' do
+  #   delete "Sign out a user" do
+  #     tags 'Users'
+  #     consumes 'application/json'
+  #     parameter name: :user, in: :body, schema: {
+  #       type: :object,
+  #       properties: {
+  #         user: {
+  #           email: { type: :string, example: 'test@example.com'},
+  #           password: { type: :string, example: 'passpass'}
+  #         }
+  #       },
+  #       required: ["email", "password"],
+  #     }
+  #     response '200', 'User signed in' do
+  #       let(:user) { { email: 'test@example.com', password: 'passpass' } }
+  #       run_test!
+  #     end
+  #   end
+  # end
 end
