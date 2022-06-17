@@ -3,7 +3,7 @@ class Users::SessionsController < Devise::SessionsController
   respond_to :json
   wrap_parameters format: [:json, :xml, :url_encoded_form, :multipart_form]
   wrap_parameters :user, include: [:email, :password]
-
+  
   private
 
   def respond_with(resource, _opts = {})
