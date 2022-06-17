@@ -12,7 +12,7 @@ class Footer2 extends Component{
 								<div className="widget widget_getintuch">
 									<h5 className="m-b30 text-white text-uppercase ">Contact us</h5>
 									<ul>
-										<li><i className="ti-location-pin"></i><strong>address</strong> demo address #8901 Marmora Road Chi Minh City, Vietnam </li>
+										<li><i className="ti-location-pin"></i><strong>address</strong> 123 rue bidon </li>
 										<li><i className="ti-mobile"></i><strong>phone</strong>0800-123456 (24/7 Support Line)</li>
 										<li><i className="ti-email"></i><strong>email</strong>info@example.com</li>
 									</ul>
@@ -44,25 +44,6 @@ class Footer2 extends Component{
 									</ul>
 								</div>
 							</div>
-							<div className="col-md-6 col-lg-3 col-sm-6 footer-col-4">
-								<div className="widget widget_gallery gallery-grid-4">
-									<h5 className="m-b30 text-white text-uppercase ">Gallery</h5>
-									<ul>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic1.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic2.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic3.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic4.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic5.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic6.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic7.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic8.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic9.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic1.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic2.jpg")} alt="" /></Link> </li>
-										<li className="img-effect2"> <Link to={"#"}><img src={require("./../../images/gallery/pic3.jpg")} alt="" /></Link> </li>
-									</ul>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -74,7 +55,6 @@ class Footer2 extends Component{
 							<div className="col-md-6 col-sm-12 text-right"> 
 								<div className="widget-link "> 
 									<ul>
-										<li><Link to={"/help-desk"}> Help Desk</Link></li> 
 										<li><Link to={"privacy-policy"}> Privacy Policy</Link></li> 
 									</ul>
 								</div>

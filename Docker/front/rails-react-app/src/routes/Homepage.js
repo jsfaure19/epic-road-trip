@@ -21,8 +21,8 @@ class Homepage extends Component{
 						<div className="container">
 							<div className="dlab-bnr-inr-entry align-m dlab-home">
 								<div className="bnr-content">
-									<h2>Explore My Ass JULES +D</h2>
-									<p>Ici vous pourrez trouver tous les lieux où J. +D explose des culs</p>
+									<h2>MILLE & UNES ACTIVITES</h2>
+									<p>Ici vous trouverez ce qui vous convient le mieux</p>
 								</div>
 								<div className="search-filter filter-style1">
 									<form>
@@ -195,7 +195,7 @@ class Homepage extends Component{
 											<Link to={'#'} className="icon-cell"><i className="ti-gift text-primary"></i></Link> 
 										</div>
 										<div className="icon-content">
-											<h3 className="dlab-tilte">Pete Moi le Cul JULES?</h3>
+											<h3 className="dlab-tilte">Faites nous confiance !</h3>
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
 										</div>
 									</div>
@@ -207,7 +207,7 @@ class Homepage extends Component{
 											<Link to={'#'} className="icon-cell"><i className="ti-rocket text-primary"></i></Link> 
 										</div>
 										<div className="icon-content">
-											<h3 className="dlab-tilte">Découvrez De Fabuleux Endroits</h3>
+											<h3 className="dlab-tilte">Découvrez De Fabuleux Endroits.</h3>
 											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
 										</div>
 									</div>
