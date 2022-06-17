@@ -14,9 +14,6 @@ services:
       dockerfile: Dockerfile
     command: /bin/sh -c "rm -f /rails-react-app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     image: rails:dev
-    volumes:
-      - ./api:/rails-react-app
-      - ./api/vendor/bundle:/rails-react-app/vendor/bundle
     environment:
       RAILS_ENV: development
     ports:
@@ -24,7 +21,7 @@ services:
     depends_on:
       - db
   front:
-    build: 
+    build:
       context: ./front/
       dockerfile: Dockerfile
     volumes:
