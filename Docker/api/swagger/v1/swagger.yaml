@@ -1,0 +1,112 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/poi?category={category}&lat={lat}&lng={lng}&max_result={max_result}&radius={radius}":
+    get:
+      summary: search poi
+      tags:
+      - poi
+      parameters:
+      - name: category
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lat
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: lng
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: radius
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: max_result
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: poi found
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  name:
+                    type: string
+                  address:
+                    type: string
+                  address2:
+                    type: string
+                  distance:
+                    type: floatg
+  "/users.json":
+    post:
+      summary: Register a new user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: User created
+        '400':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  email:
+                    type: string
+                    example: test@example.com
+                  password:
+                    type: string
+                    example: passpass
+              required:
+              - email
+              - password
+  "/users/sign_in.json":
+    post:
+      summary: Sign in a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: User signed in
+        '401':
+          description: Invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  email:
+                    type: string
+                    example: test@example.com
+                  password:
+                    type: string
+                    example: passpass
+              required:
+              - email
+              - password
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
