@@ -7,19 +7,25 @@ services:
       - postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: 'postgres'
-      POSTGRES_PASSWORD: 'password'
+      POSTGRES_PASSWORD: 'postgres'
   api:
     build:
       context: ./api/
       dockerfile: Dockerfile
     command: /bin/sh -c "rm -f /rails-react-app/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./api:/react-rails-app
     image: rails:dev
-    environment:
-      RAILS_ENV: development
     ports:
       - 3001:3000
     depends_on:
       - db
+    environment:
+      RAILS_ENV: 'development'
+      POSTGRES_PASSWORD: 'password'
+      POSTGRES_USERNAME: 'postgres'
+      POSTGRES_HOST: 'db'
+      DATABASE_URL: postgres://postgres:postgres@db
   front:
     build:
       context: ./front/

@@ -1,9 +1,10 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
-  username: postgres
-  password: postgres
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: <%= ENV['POSTGRES_HOST'] %>
+  url: <%= ENV['DATABASE_URL'] %>
   pool: 5
 
 development:
@@ -13,3 +14,7 @@ development:
 test:
   <<: *default
   database: rails-react-app_test
+
+production:
+  <<: *default
+  database: rails-react_app_production
