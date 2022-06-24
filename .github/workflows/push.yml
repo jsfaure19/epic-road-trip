@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./docker/api
+        working-directory: epic_road_trip/docker/api
 
     services:
       postgres:
