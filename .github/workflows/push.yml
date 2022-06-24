@@ -1,14 +1,14 @@
 name: Ruby
 
-on: 
-  push:
-    path: 'docker/api/**'
+on: push
 
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: docker/api
     env:
       RAILS_ENV: test
       DATABASE_URL: postgres://postgres:postgres@localhost:5432
