@@ -34,9 +34,10 @@ jobs:
 
       - name: Create database
         run: |
-          ls -lla
-          cd api
-        working-directory: docker
+          bundle install
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+        working-directory: api
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
@@ -45,5 +46,5 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-        working-directory: ./docker/api
+        working-directory: api
         run: bundle exec rake
