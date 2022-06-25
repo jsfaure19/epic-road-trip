@@ -4,6 +4,33 @@ info:
   title: API V1
   version: v1
 paths:
+  "/search_lat_long?search_string={search_string}":
+    get:
+      summary: get lat long
+      tags:
+      - latlong
+      parameters:
+      - name: search_string
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: search results
+          content:
+            application/json:
+              schema:
+                type: array
+                properties:
+                  lat:
+                    type: string
+                  long:
+                    type: string
+                  display_name:
+                    type: string
+                  importance:
+                    type: string
   "/poi?category={category}&lat={lat}&lng={lng}&max_result={max_result}&radius={radius}":
     get:
       summary: search poi
@@ -50,7 +77,7 @@ paths:
                   address2:
                     type: string
                   distance:
-                    type: floatg
+                    type: float
   "/users.json":
     post:
       summary: Register a new user

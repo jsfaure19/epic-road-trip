@@ -1,15 +1,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
+  host: db
   username: postgres
-  password: postgres
+  password: password
   pool: 5
 
 development:
   <<: *default
-  database: rails-react-app_development
 
 test:
   <<: *default
-  database: rails-react-app_test
