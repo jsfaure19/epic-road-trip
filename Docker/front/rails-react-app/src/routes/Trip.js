@@ -5,8 +5,24 @@ import React from "react";
 import RoutingMachine from "../components/RoutingMachine";
 import ERTStepper from "../components/ERTStepper";
 import L from "leaflet";
-
+import Geocode from "react-geocode";
+import { IconButton } from "@mui/material";
+import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 const Trip = () => {
+  // Geocode.setApiKey("AIzaSyAIZt5IftUGqdCUtDhNaajO_hCA3XneamM");
+  // Geocode.setLanguage("fr");
+
+  // Geocode.fromAddress("10 bis route du boulou maureillas").then(
+  //   (response) => {
+  //     const { lat, lng } = response.results[0].geometry.location;
+  //     console.log(lat, lng);
+  //   },
+  //   (error) => {
+  //     console.error(error);
+  //   }
+  // );
   const [departure, setDeparture] = React.useState({
     cityName: "Paris",
     lat: 48.862725,
@@ -35,6 +51,7 @@ const Trip = () => {
   ]);
   const [map, setMap] = React.useState(null);
   const [instance, setInstance] = React.useState();
+  const [locomotionType, setLocomotionType] = React.useState("car");
   const routingMachineRef = React.useRef();
   const pluginRef = React.useRef();
 
@@ -59,8 +76,22 @@ const Trip = () => {
     console.log("toto");
     if (routingMachineRef.current) {
       routingMachineRef.current.setWaypoints(renderWaypoints());
+
+      console.log("routingref", routingMachineRef.current);
     }
   }, [waypoints, routingMachineRef]);
+
+  // React.useEffect(() => {
+  //   console.log("toto");
+  //   if (routingMachineRef.current) {
+  //     console.log("routing", routingMachineRef);
+  //     const test = routingMachineRef.current.options;
+  //     test.vehicle = locomotionType;
+  //     test.router.options.urlParameters.vehicle = locomotionType;
+  //     console.log("test", test);
+  //     routingMachineRef.current.initialize(test);
+  //   }
+  // }, [locomotionType]);
 
   const HandlingMapComponent = () => {
     const localMap = useMap();
@@ -103,6 +134,55 @@ const Trip = () => {
           />
         </Grid>
         <Grid item xs={8}>
+          <Grid
+            container
+            sx={{
+              position: "absolute",
+              right: 20,
+              top: 20,
+              zIndex: 999,
+              width: 200,
+              justifyContent: "space-between",
+              backgroundColor: "white",
+              py: 1,
+              px: 2,
+              borderRadius: 6,
+            }}
+          >
+            <Grid item xs={3}>
+              <IconButton
+                sx={{
+                  backgroundColor:
+                    locomotionType === "foot" ? "pink" : "lightgray",
+                }}
+                onClick={() => setLocomotionType("foot")}
+              >
+                <DirectionsWalkIcon />
+              </IconButton>
+            </Grid>
+            <Grid item xs={3}>
+              <IconButton
+                sx={{
+                  backgroundColor:
+                    locomotionType === "car" ? "pink" : "lightgray",
+                }}
+                onClick={() => setLocomotionType("car")}
+              >
+                <DirectionsCarIcon />
+              </IconButton>
+            </Grid>
+            <Grid item xs={3}>
+              <IconButton
+                sx={{
+                  backgroundColor:
+                    locomotionType === "bike" ? "pink" : "lightgray",
+                }}
+                onClick={() => setLocomotionType("bike")}
+              >
+                <DirectionsBikeIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
           <MapContainer
             id="mapId"
             zoom={14}
@@ -119,6 +199,7 @@ const Trip = () => {
               departure={departure}
               arrival={arrival}
               waypoints={waypoints}
+              locomotionType={locomotionType}
             />
           </MapContainer>
         </Grid>
