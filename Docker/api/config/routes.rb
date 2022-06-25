@@ -8,4 +8,5 @@ Rails.application.routes.draw do
              }
   get '/member-data', to: 'members#show'
   get '/poi', to: 'poi#search_poi'
+  get '/search_lat_long', to: 'latlon#search'
 end

@@ -21,7 +21,7 @@ RSpec.describe 'poi', type: :request do
             name: { type: :string },
             address: { type: :string },
             address2: { type: :string },
-            distance: { type: :floatg},
+            distance: { type: :float},
           }
           
         let(:category) { 'hotel' }
