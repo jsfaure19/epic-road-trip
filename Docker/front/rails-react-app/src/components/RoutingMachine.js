@@ -4,9 +4,10 @@ import "leaflet-routing-machine";
 import SendIcon from "@mui/icons-material/Send";
 import SportsScoreIcon from "@mui/icons-material/SportsScore";
 
+require("lrm-graphhopper");
+
 const CreateRoutingMachineLayer = (props) => {
   const renderWaypoints = () => {
-    console.log("test");
     const { departure, arrival, waypoints } = props;
     let finalWaypoints = [];
     finalWaypoints.push(L.latLng(departure.lat, departure.long));
@@ -40,16 +41,10 @@ const CreateRoutingMachineLayer = (props) => {
     draggableWaypoints: true,
     fitSelectedRoutes: true,
     language: "fr",
-    // createMarker: (i, waypoint, n) => {
-    //   console.log("marker I", i);
-    //   console.log("marker wayp", waypoint);
-    //   console.log("marker N", n);
-    //   return (
-    //     <Marker>
-    //       <SendIcon />
-    //     </Marker>
-    //   );
-    // },
+    router: L.Routing.graphHopper("cf060103-c01e-442f-83df-d007fb0690f8", {
+      urlParameters: { vehicle: props.locomotionType, locale: "fr_FR" },
+    }),
+    // geocoder: L.Control.Geocoder.nominatim(),
     createMarker: function (index, waypoint, totalWaypoints) {
       const marker = L.marker(waypoint.latLng, {
         draggable: true,
@@ -75,6 +70,8 @@ const CreateRoutingMachineLayer = (props) => {
     },
     showAlternatives: false,
   });
+  console.log("iNSTANCE", instance);
+  console.log("props.locomotiontype", props.locomotionType);
   return instance;
 };
 
