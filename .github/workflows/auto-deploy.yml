@@ -19,7 +19,7 @@ jobs:
 ### ⬇ IMPORTANT PART ⬇ ###
 
       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name
-        uses: gonuit/heroku-docker-deploy@v1.3.3 # GitHub action name (leave it as it is).
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0 # GitHub action name (leave it as it is).
         with:
           # Below you must provide variables for your Heroku app.
 
@@ -30,10 +30,10 @@ jobs:
           
           # Heroku API key associated with provided user's email.
           # Api Key is available under your Heroku account settings.
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          api_key: ${{ secrets.HEROKU_API_KEY }}
           
           # Name of the heroku application to which the build is to be sent.
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          #heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
 
           # (Optional, default: "./")
           # Dockerfile directory.
@@ -44,14 +44,14 @@ jobs:
 
           # (Optional, default: "Dockerfile")
           # Dockerfile name.
-          dockerfile_name: Dockerfile
+          #dockerfile_name: Dockerfile
 
           # (Optional, default: "")
           # Additional options of docker build command.
-          docker_options: "--no-cache"
+          #docker_options: "--no-cache"
 
           # (Optional, default: "web")
           # Select the process type for which you want the docker container to be uploaded.
           # By default, this argument is set to "web".
           # For more information look at https://devcenter.heroku.com/articles/process-model
-          process_type: web
+          #process_type: web
