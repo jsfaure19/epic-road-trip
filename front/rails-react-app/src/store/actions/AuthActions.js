@@ -25,7 +25,7 @@ export function signupAction(email, password, history) {
                 history,
             );
             dispatch(confirmedSignupAction(response.data));
-            history.push('/home');
+            history.push('/homepage');
         })
         .catch((error) => {
             const errorMessage = formatError(error.response.data);

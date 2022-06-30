@@ -10,28 +10,32 @@ export function signUp(email, password) {
     const postData = {
         email,
         password,
-        returnSecureToken: true,
-    };
+/*         returnSecureToken: true,
+ */    };
     return axios.post(
-        ``/* API bdd pour connexion  */,
+        `http://localhost:3001/users`,
         postData,
-    );
+    ).then((response) => {
+        console.log(response);
+      });
 }
 
 export function login(email, password) {
     const postData = {
         email,
         password,
-        returnSecureToken: true,
-    };
-    return axios.post(
-        ``, /* API bdd pour connexion */
+/*         returnSecureToken: true,
+ */    };
+    return axios.get(
+        `http://localhost:3001/users/sign_in`,
         postData,
-    );
+    ).then((response) => {
+        console.log(response);
+      });
 }
 
 export function formatError(errorResponse) {
-    switch (errorResponse.error.message) {
+    switch (errorResponse.error.message) {  
         case 'EMAIL_EXISTS':
             //return 'Email already exists';
             swal("Oops", "Email already exists", "error");

@@ -51,7 +51,7 @@ class Header3 extends Component{
 
 									<li className="down"><Link to={"#"}>Comptes <i className="fa fa-chevron-down"></i></Link>
 										<ul className="sub-menu">
-											<li><Link to={"/register"}>S'enregistrer</Link></li>
+											<li><Link to={"/login/register"}>S'enregistrer</Link></li>
 											<li><Link to={"/login"}>Se connecter</Link></li>
 											<li><Link to={"/"}>Se déconnecter<span className="tag-new">TODO</span></Link></li>
 										</ul>

@@ -69,10 +69,10 @@ function Login (props) {
 												/>
 												{errors.email && <div className="text-danger fs-12">{errors.email}</div>}
 												
-												{/* <input name="dzName" required="" className="form-control" placeholder="Username or Email Address" type="text"/> */}
+												<input name="dzName" required="" className="form-control" placeholder="Username or Email Address" type="text"/>
 											</div>
 											<div className="form-group">
-													{/*<input name="dzName" required="" className="form-control " placeholder="Type Password" type="password"/>*/}												
+													<input name="dzName" required="" className="form-control " placeholder="Type Password" type="password"/>												
 													<input type="password" className="form-control" value={password} placeholder="Type Your Password"
 													onChange={(e) =>
 														setPassword(e.target.value)

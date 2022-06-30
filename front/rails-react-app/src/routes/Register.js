@@ -55,7 +55,7 @@ function Register(props) {
 											</div>
 										)}
 										<form className="dlab-form" onSubmit={onSignUp}>
-											<h3 className="form-title m-t0">Create an account! It's free and always will be.</h3>
+											<h3 className="form-title m-t0">Formulaire d'inscription :</h3>
 											<div className="form-group text-center">
 												<Link to="#" className="site-button facebook"><i className="fa fa-facebook-official m-r10"></i> Log in with Facebook</Link>
 											</div>
@@ -63,12 +63,10 @@ function Register(props) {
 												<input name="dzName" required="" className="form-control" placeholder="Full Name" type="text"/>
 											</div>
 											<div className="form-group">
-												<input value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="hello@example.com" />
-												<div className="text-danger">{errors.email && <div>{errors.email}</div>}</div>
-													{/* <input name="dzName" required="" className="form-control" placeholder="Email Id" type="text"/> */}
-											</div>
+												<input value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="e@example.com" />
+												<div className="text-danger">{errors.email && <div>{errors.email}</div>}</div>											</div>
 											<div className="form-group">
-												<input value={password} className="form-control" defaultValue="Password"
+												<input value={password} minlength="8" type="password" className="form-control" placeholder="Password" defaultValue="Password"
 													onChange={(e) =>
 														setPassword(e.target.value)
 													}												  
@@ -76,7 +74,7 @@ function Register(props) {
 												<div className="text-danger">{errors.password && <div>{errors.password}</div>}</div>
 											</div>
 											<div className="form-group">
-												<input name="dzName" required="" className="form-control" placeholder="Address" type="text"/>
+												<input name="dzName" minlength="8" required="" className="form-control" placeholder="Address" type="text"/>
 											</div>
 											<div className="form-group">
 												<input name="dzName" required="" className="form-control" placeholder="City/Town" type="text"/>
@@ -87,18 +85,18 @@ function Register(props) {
 											</div>
 											
 											<div className="form-group">
-												<input name="dzName" required="" className="form-control" placeholder="Re-type Your Password" type="text"/>
+												<input name="dzName" required="" className="form-control" placeholder="Re-type Your Password" type="password"/>
 											</div>
 											<div className="form-group">
-												<input type="checkbox" id="privacy-policy" />
-												<label htmlFor="privacy-policy">I agree to the <Link to="#" className="btn-link">Terms of Service </Link>& <Link to="#" className="btn-link">Privacy Policy </Link></label>
+												<input type="checkbox" required="required" id="privacy-policy" />
+												<label htmlFor="privacy-policy">J'ai lu & j'accepte <Link to="#" className="btn-link">la politique d'utilisation de votre service </Link>& <Link to="#" className="btn-link">la politique de gestion des données </Link></label>
 											</div>
 											<div className="form-group"> 
-												<button className="site-button button-md btn-block">Submit</button>
+												<button className="site-button button-md btn-block">C'est parti !</button>
 											</div>
 											<div className="form-group">
 												<p className="info-bottom">
-													<Link to="login" className="btn-link">Login with username and password?</Link> 
+													<Link to="login" className="btn-link">Vous avez déjà un compte ?</Link> 
 												</p>
 											</div>
 										</form>
