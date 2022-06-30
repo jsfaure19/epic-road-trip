@@ -11,3 +11,7 @@ development:
 
 test:
   <<: *default
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  database: <%= ENV['DATABASE_NAME'] || 'mobilyweb_test' %>
+  username: <%= ENV['DATABASE_USERNAME'] || 'postgres' %>  
+  password: <%= ENV['DATABASE_PASSWORD'] || 'postgres' %>
