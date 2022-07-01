@@ -8,10 +8,11 @@ import {
 export function signUp(email, password) {
     //axios call
     const postData = {
-        email,
-        password,
+        user:{
+        email:email,
+        password:password,
 /*         returnSecureToken: true,
- */    };
+ */    }};
     return axios.post(
         `http://localhost:3001/users`,
         postData,
@@ -22,11 +23,12 @@ export function signUp(email, password) {
 
 export function login(email, password) {
     const postData = {
-        email,
-        password,
+        user:{
+        email:email,
+        password:password,
 /*         returnSecureToken: true,
- */    };
-    return axios.get(
+ */    }};
+    return axios.post(
         `http://localhost:3001/users/sign_in`,
         postData,
     ).then((response) => {
@@ -35,7 +37,7 @@ export function login(email, password) {
 }
 
 export function formatError(errorResponse) {
-    switch (errorResponse.error.message) {  
+    switch (errorResponse.error.message) {
         case 'EMAIL_EXISTS':
             //return 'Email already exists';
             swal("Oops", "Email already exists", "error");
