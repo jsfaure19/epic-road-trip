@@ -4,54 +4,49 @@ import React from "react";
 
 import RoutingMachine from "../components/RoutingMachine";
 import ERTStepper from "../components/ERTStepper";
+import ERTPoiSelector from "../components/ERTPoiSelector";
 import L from "leaflet";
-import Geocode from "react-geocode";
 import { IconButton } from "@mui/material";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
 const Trip = () => {
-  // Geocode.setApiKey("AIzaSyAIZt5IftUGqdCUtDhNaajO_hCA3XneamM");
-  // Geocode.setLanguage("fr");
-
-  // Geocode.fromAddress("10 bis route du boulou maureillas").then(
-  //   (response) => {
-  //     const { lat, lng } = response.results[0].geometry.location;
-  //     console.log(lat, lng);
-  //   },
-  //   (error) => {
-  //     console.error(error);
-  //   }
-  // );
   const [departure, setDeparture] = React.useState({
+    id: 0,
     cityName: "Paris",
     lat: 48.862725,
     long: 2.287592,
+    poi: [],
   });
   const [arrival, setArrival] = React.useState({
+    id: 1,
     cityName: "Dijon",
     lat: 47.3215806,
     long: 5.0414701,
+    poi: [],
   });
   const [waypoints, setWaypoints] = React.useState([
     {
-      id: 0,
+      id: 2,
       cityName: "Toulouse",
       lat: 43.6044622,
       long: 1.4442469,
       disabled: true,
+      poi: [],
     },
     {
-      id: 1,
+      id: 3,
       cityName: "Perpignan",
       lat: 42.6985304,
       long: 2.8953121,
       disabled: false,
+      poi: [],
     },
   ]);
   const [map, setMap] = React.useState(null);
   const [instance, setInstance] = React.useState();
   const [locomotionType, setLocomotionType] = React.useState("car");
+  const [selectedPoint, setSelectedPoint] = React.useState({});
   const routingMachineRef = React.useRef();
   const pluginRef = React.useRef();
 
@@ -73,25 +68,10 @@ const Trip = () => {
   }, [map]);
 
   React.useEffect(() => {
-    console.log("toto");
     if (routingMachineRef.current) {
       routingMachineRef.current.setWaypoints(renderWaypoints());
-
-      console.log("routingref", routingMachineRef.current);
     }
   }, [waypoints, routingMachineRef]);
-
-  // React.useEffect(() => {
-  //   console.log("toto");
-  //   if (routingMachineRef.current) {
-  //     console.log("routing", routingMachineRef);
-  //     const test = routingMachineRef.current.options;
-  //     test.vehicle = locomotionType;
-  //     test.router.options.urlParameters.vehicle = locomotionType;
-  //     console.log("test", test);
-  //     routingMachineRef.current.initialize(test);
-  //   }
-  // }, [locomotionType]);
 
   const HandlingMapComponent = () => {
     const localMap = useMap();
@@ -108,6 +88,28 @@ const Trip = () => {
     setWaypoints(localWaypoints);
   };
 
+  const handleSelectedPointChange = (point) => {
+    setSelectedPoint(point);
+  };
+  const handleChangePOI = (point, POI) => {
+    if (point.id === departure.id) {
+      const localDeparture = { ...departure };
+      localDeparture.poi.push(POI);
+    } else if (point.id === arrival.id) {
+      const localArrival = { ...departure };
+      localArrival.poi.push(POI);
+    } else {
+      const localWaypoints = [...waypoints];
+      const res = localWaypoints.find((wayp) => wayp.id === point.id);
+      res.poi.push(POI);
+      setWaypoints(localWaypoints);
+    }
+  };
+
+  const closePOISelector = () => {
+    setSelectedPoint({});
+  };
+
   return (
     <>
       <Grid container>
@@ -119,12 +121,20 @@ const Trip = () => {
           sx={{ maxHeight: "100vh", overflow: "scroll", flexWrap: "wrap" }}
         >
           <Grid sx={{ height: "30%" }} item container>
-            <ERTStepper
-              departure={departure}
-              arrival={arrival}
-              waypoints={waypoints}
-              handleChange={updateWaypoints}
-            />
+            {selectedPoint.id || selectedPoint.id === 0 ? (
+              <ERTPoiSelector
+                selectedPoint={selectedPoint}
+                onChange={handleChangePOI}
+                onClose={closePOISelector}
+              />
+            ) : (
+              <ERTStepper
+                departure={departure}
+                arrival={arrival}
+                waypoints={waypoints}
+                handleChange={updateWaypoints}
+              />
+            )}
           </Grid>
           <Grid
             item
@@ -200,6 +210,7 @@ const Trip = () => {
               arrival={arrival}
               waypoints={waypoints}
               locomotionType={locomotionType}
+              setSelectedPoint={(point) => handleSelectedPointChange(point)}
             />
           </MapContainer>
         </Grid>

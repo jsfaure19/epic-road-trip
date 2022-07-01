@@ -12,6 +12,9 @@ const ERTStepper = (props) => {
           <Grid item xs={12} container sx={{ justifyContent: "space-between" }}>
             <Typography>{departure.cityName}</Typography>
             <SendIcon />
+            {
+              // TODO Afficher les POI de depzrture (petite icone selon le type + nom du POI)
+            }
           </Grid>
           {waypoints.map((waypoint) => {
             return (
@@ -26,12 +29,19 @@ const ERTStepper = (props) => {
                   checked={!waypoint.disabled}
                   onChange={() => props.handleChange(waypoint.id)}
                 />
+                {
+                  // TODO Afficher les POI du waypoint (petite icone selon le type + nom du POI)
+                  //  SAUF SI WAYPOINT DISABLED
+                }
               </Grid>
             );
           })}
           <Grid item xs={12} container sx={{ justifyContent: "space-between" }}>
             <Typography>{arrival.cityName}</Typography>
             <SportsScoreIcon />
+            {
+              // TODO Afficher les POI Arrival (petite icone selon le type + nom du POI)
+            }
           </Grid>
         </>
       );
