@@ -24,10 +24,9 @@ export function signUp(email, password) {
 export function login(email, password) {
     const postData = {
         user:{
-        email:email,
-        password:password,
-/*         returnSecureToken: true,
- */    }};
+            email:email,
+            password:password,
+    }};
     return axios.post(
         `http://localhost:3001/users/sign_in`,
         postData,

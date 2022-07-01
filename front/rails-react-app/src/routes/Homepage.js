@@ -14,9 +14,9 @@ class Homepage extends Component{
 	render(){
 		return(
 			<div className="page-wraper font-roboto">
-				<Header3 />	
+				<Header3 />
 				<div className="page-content bg-white">
-					
+
 				<div className="dlab-bnr-inr dlab-bnr-inr-md bnr-style1" style={{backgroundImage:"url(" + img1 + ")", backgroundSize: "cover"}} id="dezParticles">
 						<div className="container">
 							<div className="dlab-bnr-inr-entry align-m dlab-home">
@@ -27,22 +27,22 @@ class Homepage extends Component{
 								<div className="search-filter filter-style1">
 									<form>
 										<div className="input-group">
-											<input type="text" className="form-control" placeholder="Ville de départ" />
-											<input type="text" className="form-control" placeholder="Ville d'arrivée" />
+											<input id="villeDepart" type="text" className="form-control" placeholder="Ville de départ" />
+											<input id="villeArrivee" type="text" className="form-control" placeholder="Ville d'arrivée" />
 
 												<Form.Control as="select">
-													<option>Select Category</option>
-													<option>Construction</option>
-													<option>Corodinator</option>
-													<option>Employer</option>
-													<option>Financial Career</option>
-													<option>Marketing</option>
-													<option>Supporting</option>
-													<option>Teaching</option>
+													<option>Trajet</option>
+													<option>Hôtel</option>
+													<option>Loisir</option>
+													<option>Manger</option>
+													<option>Boire</option>Authorization
 												</Form.Control>
 
 											<div className="input-group-prepend">
-												<Link to ="../trip" className="site-button"> Rechercher</Link>
+												<Link 	to ="../trip"
+														className="site-button"
+														state="#villeDepart"
+														> Rechercher</Link>
 											</div>
 										</div>
 									</form>

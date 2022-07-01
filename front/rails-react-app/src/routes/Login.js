@@ -9,7 +9,7 @@ function Login (props) {
 	const [email, setEmail] = useState('');
     let errorsObj = { email: '', password: '' };
     const [errors, setErrors] = useState(errorsObj);
-    const [password, setPassword] = useState('123456');
+    const [password, setPassword] = useState(' ');
 
     const dispatch = useDispatch();
 
@@ -72,8 +72,12 @@ function Login (props) {
 												
 											</div>
 											<div className="form-group">
-													<input name="dzName" required="" className="form-control " placeholder="Password" type="password"/>
-												{errors.password && <div className="text-danger fs-12">{errors.password}</div>}
+                                                {/* <input name="dzName" required="" className="form-control " placeholder="Type Password" type="password"/> */}
+                                                <input type="password" className="form-control" value={password} placeholder="Type Your Password"
+                                                    onChange={(e) =>
+                                                        setPassword(e.target.value)
+                                                    }
+                                                />
 											</div>
 											<div className="form-group field-btn text-left">
 												<div className="input-block">
