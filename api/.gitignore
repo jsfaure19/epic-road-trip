@@ -42,10 +42,5 @@ yarn-debug.log*
 .env.local
 .env.test.local
 
-# Gireve certificat
-/config/gireve/FRMBW.gireve.com.crt
-/config/gireve/privkey.pem
-/config/gireve/IOP-FR_MBW.gireve.com.pem 
-
 #DB
 latest.dump
