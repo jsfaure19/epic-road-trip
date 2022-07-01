@@ -6,7 +6,7 @@ import { loadingToggleAction,loginAction,
 import bnr from '../images/logo.png';
 
 function Login (props) {
-	const [email, setEmail] = useState('demo@example.com');
+	const [email, setEmail] = useState('');
     let errorsObj = { email: '', password: '' };
     const [errors, setErrors] = useState(errorsObj);
     const [password, setPassword] = useState('123456');
@@ -29,10 +29,10 @@ function Login (props) {
         if (error) {
 			return ;
 		}
-		dispatch(loadingToggleAction(true));	
+		dispatch(loadingToggleAction(true));
         dispatch(loginAction(email, password, props.history));
-    } 
-	
+    }
+
 	return(
 		<div className="page-wraper">
 			
@@ -69,15 +69,10 @@ function Login (props) {
 												/>
 												{errors.email && <div className="text-danger fs-12">{errors.email}</div>}
 												
-												<input name="dzName" required="" className="form-control" placeholder="Username or Email Address" type="text"/>
+												
 											</div>
 											<div className="form-group">
-													<input name="dzName" required="" className="form-control " placeholder="Type Password" type="password"/>												
-													<input type="password" className="form-control" value={password} placeholder="Type Your Password"
-													onChange={(e) =>
-														setPassword(e.target.value)
-													}
-												/>
+													<input name="dzName" required="" className="form-control " placeholder="Password" type="password"/>
 												{errors.password && <div className="text-danger fs-12">{errors.password}</div>}
 											</div>
 											<div className="form-group field-btn text-left">
@@ -94,7 +89,7 @@ function Login (props) {
 												<p className="info-bottom">Don’t have an account? <Link to="register" className="btn-link">Register</Link> </p>
 											</div>
 										</form>
-									</div>									
+									</div>
 								</div>
 							</div>
 						</div>

@@ -31,7 +31,7 @@ class Tabcontent extends Component{
 						<Tab.Pane eventKey="Place" className="tab-pane">
 							<form>
 								<div className="input-group">
-									<input type="text" className="form-control" placeholder=" What are you looking for?" />
+									<input type="text" className="form-control" placeholder="Départ" />
 									 
 										<Form.Control as="select"  >
 											<option>Select Category</option>

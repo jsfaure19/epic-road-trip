@@ -27,8 +27,8 @@ class Homepage extends Component{
 								<div className="search-filter filter-style1">
 									<form>
 										<div className="input-group">
-											<input type="text" className="form-control" placeholder="What are you looking for?" />
-											<input type="text" className="form-control" placeholder="Location" />
+											<input type="text" className="form-control" placeholder="Ville de départ" />
+											<input type="text" className="form-control" placeholder="Ville d'arrivée" />
 
 												<Form.Control as="select">
 													<option>Select Category</option>

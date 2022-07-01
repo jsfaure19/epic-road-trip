@@ -7,14 +7,18 @@ COPY Gemfile.lock /rails-react-app/Gemfile.lock
 RUN bundle install
 COPY . /rails-react-app
 
-CMD docker-compose run api rake db:create
-CMD docker-compose run api rake db:migrate
+pronto-rubocop was resolved to 0.11.1, which depends on
+    pronto was resolved to 0.11.0, which depends on
+      rugged
+
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
+
+CMD docker-compose run api rake db:migrate
 
 # Start the main praocess.
 CMD ["rails", "server", "-b", "0.0.0.0"]

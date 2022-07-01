@@ -96,7 +96,7 @@ function Register(props) {
 											</div>
 											<div className="form-group">
 												<p className="info-bottom">
-													<Link to="login" className="btn-link">Vous avez déjà un compte ?</Link> 
+													<Link to="/login" className="btn-link">Vous avez déjà un compte ?</Link> 
 												</p>
 											</div>
 										</form>

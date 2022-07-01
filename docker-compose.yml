@@ -9,6 +9,7 @@ services:
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'postgres'
   api:
+    restart: always
     build:
       context: ./api/
       dockerfile: Dockerfile
