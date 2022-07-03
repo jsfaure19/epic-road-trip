@@ -1,6 +1,8 @@
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 import Grid from "@mui/material/Grid";
 import React from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import RoutingMachine from "../components/RoutingMachine";
 import ERTStepper from "../components/ERTStepper";
@@ -10,7 +12,13 @@ import { IconButton } from "@mui/material";
 import DirectionsWalkIcon from "@mui/icons-material/DirectionsWalk";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import DirectionsBikeIcon from "@mui/icons-material/DirectionsBike";
+
 const Trip = () => {
+
+  // const [departure, setDeparture] = React.useState({});
+  // const [arrival, setArrival] = React.useState({});
+  // const [waypoints, setWaypoints] = React.useState([]);
+
   const [departure, setDeparture] = React.useState({
     id: 0,
     cityName: "Paris",
@@ -25,6 +33,7 @@ const Trip = () => {
     long: 5.0414701,
     poi: [],
   });
+
   const [waypoints, setWaypoints] = React.useState([
     {
       id: 2,
@@ -43,12 +52,15 @@ const Trip = () => {
       poi: [],
     },
   ]);
+
+  const pluginRef = React.useRef();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [map, setMap] = React.useState(null);
   const [instance, setInstance] = React.useState();
   const [locomotionType, setLocomotionType] = React.useState("car");
   const [selectedPoint, setSelectedPoint] = React.useState({});
   const routingMachineRef = React.useRef();
-  const pluginRef = React.useRef();
 
   const renderWaypoints = () => {
     let finalWaypoints = [];
@@ -61,6 +73,33 @@ const Trip = () => {
     return finalWaypoints;
   };
 
+  // React.useEffect(() => {
+  //   if(location.state.arrival != '' && location.state.departure != ''){
+  //    const arr = location.state.arrival;
+  //     const dep = location.state.departure;
+  //     const bis = {
+  //       id:'998',
+  //       cityName: arr.label,
+  //       lat: arr.lat,
+  //       long: arr.lon,
+  //       disabled:false,
+  //       poi:[],
+  //     };
+  //     const localDeparture = {
+  //       id:'999',
+  //       cityName: dep.label,
+  //       lat: dep.lat,
+  //       long: dep.lon,
+  //       disabled:false,
+  //       poi:[],
+  //     }
+  //     setArrival(bis)
+  //     setDeparture(localDeparture)
+  //   }else{
+  //     navigate('/homepage')
+  //   }
+  // }, []);
+
   React.useEffect(() => {
     if (!map) return;
     const controlContainer = routingMachineRef.current.onAdd(map);
@@ -71,7 +110,7 @@ const Trip = () => {
     if (routingMachineRef.current) {
       routingMachineRef.current.setWaypoints(renderWaypoints());
     }
-  }, [waypoints, routingMachineRef]);
+  }, [waypoints, routingMachineRef,departure, arrival]);
 
   const HandlingMapComponent = () => {
     const localMap = useMap();
@@ -87,6 +126,18 @@ const Trip = () => {
     });
     setWaypoints(localWaypoints);
   };
+
+  const addWaypoint= (newWaypoint) => {
+    const localWaypoints = [...waypoints];
+    const newWayp = { id:localWaypoints.length+1,
+                cityName: newWaypoint.label,
+              lat: newWaypoint.lat,
+              long: newWaypoint.lon,
+              disabled:false,
+              poi:[],}
+              localWaypoints.push(newWayp)
+              setWaypoints(localWaypoints)
+  }
 
   const handleSelectedPointChange = (point) => {
     setSelectedPoint(point);
@@ -111,6 +162,7 @@ const Trip = () => {
   };
 
   return (
+
     <>
       <Grid container>
         <Grid
@@ -133,6 +185,7 @@ const Trip = () => {
                 arrival={arrival}
                 waypoints={waypoints}
                 handleChange={updateWaypoints}
+                addWaypoint={addWaypoint}
               />
             )}
           </Grid>

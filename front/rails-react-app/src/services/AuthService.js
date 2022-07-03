@@ -17,7 +17,7 @@ export function signUp(email, password) {
         `http://localhost:3001/users`,
         postData,
     ).then((response) => {
-        console.log(response);
+
       });
 }
 
@@ -31,7 +31,7 @@ export function login(email, password) {
         `http://localhost:3001/users/sign_in`,
         postData,
     ).then((response) => {
-        console.log(response);
+
       });
 }
 

@@ -53,10 +53,9 @@ export function loginAction(email, password, history) {
                     history,
                 );
                 dispatch(loginConfirmedAction(response.data));
-				history.push('/homepage');                
+				history.push('/homepage');
             })
             .catch((error) => {
-				//console.log(error);
                 const errorMessage = formatError(error.response.data);
                 dispatch(loginFailedAction(errorMessage));
             });

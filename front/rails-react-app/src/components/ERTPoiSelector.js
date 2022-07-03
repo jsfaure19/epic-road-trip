@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import HotelIcon from "@mui/icons-material/Hotel";
 import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
+import axios from 'axios';
 
 const ERTPoiSelector = (props) => {
   const [cofeePub, setCofeePub] = React.useState([]);
@@ -55,25 +56,62 @@ const ERTPoiSelector = (props) => {
   }, []);
 
   const updateCofeePub = () => {
-    // retrieve from API
-    "café/pub";
-    "restaurant";
+
+   return axios.all([
+            axios.get(
+            `http://localhost:3001/poi?category=pub&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+            ),
+            axios.get(
+              `http://localhost:3001/poi?category=restaurant&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+            )
+          ])
+            .then((axios.spread((obj1, obj2) => {
+              setCofeePub([...obj1.data], [...obj2.data])
+            })));
   };
 
   const updateHostel = () => {
     // retrieve from API
-    "hostel";
-    "bed breakfast guest houses";
-    "hotel/motel";
+    // "hostel";
+    // "bed breakfast guest houses";
+    // "hotel/motel";
+    return axios.all([
+      axios.get(
+      `http://localhost:3001/poi?category=hostel&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+      ),
+      axios.get(
+        `http://localhost:3001/poi?category=hotel&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+      ),
+      axios.get(
+        `http://localhost:3001/poi?category=motel&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+      )
+    ])
+      .then((axios.spread((obj1, obj2 , obj3) => {
+        setHostel([...obj1.data] , [...obj2.data] , [...obj3.data])
+      })));
   };
 
   const updateEntertainement = () => {
     // retrieve from API
-    "casino";
-    "comedy club";
-    "karaoke club";
-    "theater";
-    "cinema";
+    // "casino";
+    // "comedy club";
+    // "karaoke club";
+    // "theater";
+    // "cinema";
+    return axios.all([
+      axios.get(
+      `http://localhost:3001/poi?category=casino&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+      ),
+      axios.get(
+        `http://localhost:3001/poi?category=theater&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+      ),
+      axios.get(
+        `http://localhost:3001/poi?category=cinema&lat=${props.selectedPoint.lat}&lng=${props.selectedPoint.long}&max_result=10&radius=5000`,
+      )
+    ])
+      .then((axios.spread((obj1, obj2, obj3) => {
+        setEntertainment([...obj1.data] , [...obj2.data] , [...obj3.data])
+      })));
   };
   return (
     <Grid container>
@@ -97,20 +135,20 @@ const ERTPoiSelector = (props) => {
 
         <TabPanel value={tabValue} index={0}>
           {
-            // TODO AFFICHER cofeePub
-            // OnClick sur un des items utilise props.handleChangePOI(props.selectedpoint, tonpoi)
+          // {cofeePub.map((poi => return <div onClick={handleChangePOI(props.selectedPoint,poi )}>poi.name</div>))}
+          // props.handleChangePOI(props.selectedpoint, tonpoi)
           }
         </TabPanel>
         <TabPanel value={tabValue} index={1}>
           {
-            // TODO Afficher hostel
-            // OnClick sur un des items utilise props.handleChangePOI(props.selectedpoint, tonpoi)
+          // TODO Afficher hostel
+          // {hostel.map((poi => return <div onClick={handleChangePOI(props.selectedPoint,poi )}>poi.name</div>))}
           }
         </TabPanel>
         <TabPanel value={tabValue} index={2}>
           {
-            // TODO Afficher entertainement
-            // OnClick sur un des items utilise props.handleChangePOI(props.selectedpoint, tonpoi)
+          // TODO Afficher entertainement
+          // {entertainement.map((poi => return <div onClick={handleChangePOI(props.selectedPoint,poi )}>poi.name</div>))}
           }
         </TabPanel>
       </Grid>
