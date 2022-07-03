@@ -3,20 +3,65 @@ import {Link} from 'react-router-dom';
 import Header3 from '../markup/Layout/Header3';
 import Footer3 from '../markup/Layout/Footer3';
 import {Form} from 'react-bootstrap';
-import Tabservices2 from '../markup/Element/Tabservices2';
-import Userowl2 from '../markup/Element/Userowl2';
-import Userowl3 from '../markup/Element/Userowl3';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import axios from 'axios';
 
-var img1 = require('../images/main-slider/slide7.jpg');
-var img2 = require('../images/background/bg3.jpg');
+var img1 = require('../images/main-slider/slide2.jpg');
+var img2 = require('../images/main-slider/slide2.jpg');
 
-class Homepage extends Component{
-	render(){
+// class Homepage extends Component{
+const Homepage = () => {
+
+	const [villeD, setVilleD] = React.useState('')
+	const [villeA, setVilleA] = React.useState('')
+	const [deplacement, setDeplacement] = React.useState('')
+	const [searchResultDeparture, setSearchResultDeparture] = React.useState([])
+	const [searchResultArrival, setSearchResultArrival] = React.useState([])
+
+	const onChangeVilleDepart = (e) => {
+		setVilleD(e.target.value)
+	}
+
+	const onChangeVilleArrive = (e) => {
+		setVilleA(e.target.value)
+	}
+
+	const onChangeDeplacement = (e) => {
+		setDeplacement(e.target.value)
+	}
+
+	React.useEffect(() => {
+		if(villeD)
+		{
+			async function fetchData(){return axios.get(
+				`http://localhost:3001/search_lat_long?search_string=${villeD}`,
+		).then((response) => {
+			const res = [...response.data]
+			res.forEach((data)=> data.label = data.display_name)
+			setSearchResultDeparture(response.data)
+		  })};
+		  fetchData();
+	}
+	  }, [villeD]);
+
+	  React.useEffect(() => {
+		if(villeA)
+		{
+			async function fetchData(){return axios.get(
+				`http://localhost:3001/search_lat_long?search_string=${villeA}`,
+		).then((response) => {
+			const res = [...response.data]
+			res.forEach((data)=> data.label = data.display_name)
+			setSearchResultArrival(response.data)
+		  })};
+		  fetchData();
+	  }}, [villeA]);
+
 		return(
 			<div className="page-wraper font-roboto">
-				<Header3 />	
+				<Header3 />
 				<div className="page-content bg-white">
-					
 				<div className="dlab-bnr-inr dlab-bnr-inr-md bnr-style1" style={{backgroundImage:"url(" + img1 + ")", backgroundSize: "cover"}} id="dezParticles">
 						<div className="container">
 							<div className="dlab-bnr-inr-entry align-m dlab-home">
@@ -27,22 +72,36 @@ class Homepage extends Component{
 								<div className="search-filter filter-style1">
 									<form>
 										<div className="input-group">
-											<input type="text" className="form-control" placeholder="What are you looking for?" />
-											<input type="text" className="form-control" placeholder="Location" />
+											{/* <input id="villeDepart" onChange={onChangeVilleDepart} type="text" className="form-control" placeholder="Ville de départ" />
+											<input id="villeArrivee" onChange={onChangeVilleArrive} type="text" className="form-control" placeholder="Ville d'arrivée" /> */}
+												<Autocomplete
+												className="form-control"
+												disablePortal
+												id="combo-box-demo"
+												options={searchResultDeparture}
+												onChange={(e)=> setVilleD(searchResultDeparture[e.target.value])}
+												sx={{ width: 300 }}
+												renderInput={(params) => <TextField {...params} label="Depart" onChange={(e)=>setVilleD(e.target.value)} value={villeD}/>}
+												/>
+													<Autocomplete
+												className="form-control"
+												disablePortal
+												id="combo-box-demo"
+												options={searchResultArrival}
+												onChange={(e)=> setVilleA(searchResultArrival[e.target.value])}
+												sx={{ width: 300 }}
+												renderInput={(params) => <TextField {...params} label="Arrivée" onChange={(e)=>setVilleA(e.target.value)} value={villeA} />}
+												/>
 
-												<Form.Control as="select">
-													<option>Select Category</option>
-													<option>Construction</option>
-													<option>Corodinator</option>
-													<option>Employer</option>
-													<option>Financial Career</option>
-													<option>Marketing</option>
-													<option>Supporting</option>
-													<option>Teaching</option>
+												<Form.Control onChange={(e)=>onChangeDeplacement(e.target.value)} value={deplacement} as="select">
+													<option>Automobile</option>
+													<option>A pieds</option>
+													<option>Vélo</option>
 												</Form.Control>
 
 											<div className="input-group-prepend">
-												<Link to ="../trip" className="site-button"> Rechercher</Link>
+											<Link className="site-button" to="/trip" state={{ departure: villeD, arrival: villeA, deplacement: deplacement }}> Let's go !</Link>
+
 											</div>
 										</div>
 									</form>
@@ -57,9 +116,9 @@ class Homepage extends Component{
 						<div className="section-full bg-white content-inner-2">
 							<div className="container-fluid">
 								<div className="section-head text-black text-center">
-									<h2 className="box-title">Villes populaires</h2>
+									<h2 className="box-title">Vos destinations favorites</h2>
 									<div className="dlab-separator bg-primary"></div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+									<p>Vous trouverez ci-dessous les destinations qui vous ont fait vibrer.</p>
 								</div>
 								<div className="row m-lr0 featured-style2-area">
 									<div className="col-lg-4 col-md-12 p-lr0">
@@ -69,7 +128,7 @@ class Homepage extends Component{
 													<div className="featured-media">
 														<img src={require("../images/featured/pic1.jpg")} alt="" />
 														<div className="featured-type featured-top">
-															TOP FEATURED
+															Les plus belles destinations
 														</div>
 													</div>
 													<div className="featured-content text-white">
@@ -83,7 +142,7 @@ class Homepage extends Component{
 														<img src={require("../images/featured/pic2.jpg")} alt="" />
 													</div>
 													<div className="featured-content text-white">
-														<h2 className="title"><Link to ={'#'}>U.S.A</Link></h2>
+														<h2 className="title"><Link to ={'#'}>Portland</Link></h2>
 													</div>
 												</div>
 											</div>
@@ -93,7 +152,7 @@ class Homepage extends Component{
 														<img src={require("../images/featured/pic3.jpg")} alt="" />
 													</div>
 													<div className="featured-content text-white">
-														<h2 className="title"><Link to={'#'}>Corée</Link></h2>
+														<h2 className="title"><Link to={'#'}>Séoul</Link></h2>
 													</div>
 												</div>
 											</div>
@@ -153,25 +212,13 @@ class Homepage extends Component{
 								</div>
 							</div>
 						</div>
-					</div>
-					<div className="section-full bg-gray-1 content-inner about-us">
-						<div className="container-fluid">
-							<div className="section-head text-black text-left text-center">
-								<h2 className="box-title">Les Choses à Faire Dans La Ville</h2>
-								<div className="dlab-separator bg-primary"></div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-							</div>	
-							
-							<Tabservices2 />
-						</div>
-					</div>		
-					
+					</div>			
 					<div className="section-full bg-img-fix bg-white content-inner">
 						<div className="container">
 							<div className="section-head text-center">
 								<h2 className="box-title">En Savoir Plus ?</h2>
 								<div className="dlab-separator bg-primary"></div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
+								<p>Notre service est là pour vous permettre d'optimiser vos sorties. Préparez-vous, on s'occupe du reste ♥ .</p>
 							</div>
 							<div className="row">
 								
@@ -182,8 +229,7 @@ class Homepage extends Component{
 											<Link to={"#"} className="icon-cell"><i className="ti-search text-primary"></i></Link> 
 										</div>
 										<div className="icon-content">
-											<h3 className="dlab-tilte">Quoi Faire?</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+											<h3 className="dlab-tilte">Quoi faire?</h3>
 										</div>
 									</div>
 								</div>
@@ -196,7 +242,6 @@ class Homepage extends Component{
 										</div>
 										<div className="icon-content">
 											<h3 className="dlab-tilte">Faites nous confiance !</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
 										</div>
 									</div>
 								</div>
@@ -207,42 +252,19 @@ class Homepage extends Component{
 											<Link to={'#'} className="icon-cell"><i className="ti-rocket text-primary"></i></Link> 
 										</div>
 										<div className="icon-content">
-											<h3 className="dlab-tilte">Découvrez De Fabuleux Endroits.</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+											<h3 className="dlab-tilte">Découvrez de fabuleux endroits.</h3>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="section-full bg-white content-inner-2 bg-img-fix overlay-black-dark owl-out" style={{backgroundImage:"url(" + img2 + ")" ,backgroundPosition: "left bottom" }}>
-						<div className="container">
-							<div className="section-head text-center text-white">
-								<h2 className="box-title">What Our Users Say</h2>
-								<div className="dlab-separator bg-primary"></div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-							</div>
-							<Userowl2 />
-						</div>
-					</div>
-					<div className="section-full bg-white content-inner owl-out">
-						<div className="container">
-							<div className="section-head text-black text-center">
-								<h2 className="box-title">From The Blog</h2>
-								<div className="dlab-separator bg-primary"></div>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</p>
-							</div>	
-							<Userowl3 />
-							
-						</div>
-					</div>		
 				</div>
 				<Footer3 />
-			</div>	
+			</div>
 		)
-		
+
 	}
-}
 
 
 export default Homepage;

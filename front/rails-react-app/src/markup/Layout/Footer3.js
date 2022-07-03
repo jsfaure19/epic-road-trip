@@ -10,37 +10,30 @@ class Footer2 extends Component{
 						<div className="row">
 							<div className="col-md-6 col-lg-3 col-sm-6 footer-col-4">
 								<div className="widget widget_getintuch">
-									<h5 className="m-b30 text-white text-uppercase ">Contact us</h5>
+									<h5 className="m-b30 text-white text-uppercase ">Nous contacter</h5>
 									<ul>
-										<li><i className="ti-location-pin"></i><strong>address</strong> 123 rue bidon </li>
+										<li><i className="ti-location-pin"></i><strong>address</strong> 123 rue marchand </li>
 										<li><i className="ti-mobile"></i><strong>phone</strong>0800-123456 (24/7 Support Line)</li>
-										<li><i className="ti-email"></i><strong>email</strong>info@example.com</li>
+										<li><i className="ti-email"></i><strong>email</strong>pro@epitech.eu</li>
 									</ul>
 								</div>
 							</div>
 							
 							<div className="col-md-6 col-lg-3 col-sm-6 col-5 footer-col-4">
 								<div className="widget widget_services border-0">
-									<h5 className="m-b30 text-white text-uppercase ">Company</h5>
+									<h5 className="m-b30 text-white text-uppercase ">Entreprise</h5>
 									<ul>
-										<li><Link to={"/"}>About Us </Link></li>
-										<li><Link to={"/"}>Home </Link></li>
-										<li><Link to={"/contact"}>Contact Us</Link></li>
-										<li><Link to={"/about-1"}>About Us</Link></li>
-										<li><Link to={"/services-2"}>Our Services</Link></li>
+										<li><Link to={"/homepage"}>Accueil</Link></li>
+										<li><Link to={"/contact"}>Prendre contact</Link></li>
 									</ul>
 								</div>
 							</div>
 							
 							<div className="col-md-6 col-lg-3 col-sm-6 col-7 footer-col-4">
 								<div className="widget widget_services border-0">
-									<h5 className="m-b30 text-white text-uppercase ">Useful Link</h5>
+									<h5 className="m-b30 text-white text-uppercase ">Lien utile</h5>
 									<ul>
-										<li><Link to={"/"}>Create Account</Link></li>
-										<li><Link to={"/"}>Company Philosophy </Link></li>
-										<li><Link to={"/contact"}>Corporate Culture</Link></li>
-										<li><Link to={"/about-1"}>Portfolio</Link></li>
-										<li><Link to={"/services-2"}>Client Management</Link></li>
+										<li><Link to={"/login/register"}>Crée un compte</Link></li>
 									</ul>
 								</div>
 							</div>

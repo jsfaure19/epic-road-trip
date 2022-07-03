@@ -1,17 +1,25 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: db
-  username: postgres
-  password: password
-  pool: 5
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST'] %>
 
 development:
   <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || '5432' %>
+  host: <%= ENV['DATABASE_HOST'] %>
 
 test:
   <<: *default
-  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
-  database: <%= ENV['DATABASE_NAME'] || 'mobilyweb_test' %>
-  username: <%= ENV['DATABASE_USERNAME'] || 'postgres' %>  
-  password: <%= ENV['DATABASE_PASSWORD'] || 'postgres' %>
+  host: localhost
+  database: mobilyweb_test
+  username: postgres
+  password: postgres 

@@ -13,8 +13,5 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
-CMD docker-compose run api rake db:create
-CMD docker-compose run api rake db:migrate
-
 # Start the main praocess.
 CMD ["rails", "server", "-b", "0.0.0.0"]
