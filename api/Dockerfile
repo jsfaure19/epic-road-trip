@@ -7,9 +7,6 @@ COPY Gemfile.lock /rails-react-app/Gemfile.lock
 RUN bundle install
 COPY . /rails-react-app
 
-CMD docker-compose run api rake db:create
-CMD docker-compose run api rake db:migrate
-
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
