@@ -12,6 +12,7 @@ import Homepage from "./routes/Homepage";
 import Login from "./routes/Login";
 import Register from "./routes/Register";
 import Error from "./routes/Error";
+import Profil from "./routes/Profil";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -19,7 +20,7 @@ root.render(
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css"
     />
-  <Provider store = {store}> 
+  <Provider store = {store}>
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<Error />} />
@@ -27,9 +28,10 @@ root.render(
         <Route path="homepage" element={<Homepage />} />
         <Route path="login" element={<Login />} />
         <Route path="login/register" element={<Register />} />
+        <Route path="profil" element={<Profil />} />
       </Routes>
     </BrowserRouter>
-  </Provider>	  
+  </Provider>
   </React.StrictMode>
 );
 

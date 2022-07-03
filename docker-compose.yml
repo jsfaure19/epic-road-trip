@@ -15,6 +15,7 @@ services:
       - "5432:5432"
 
   api:
+    restart: always
     build:
       context: ./api/
       dockerfile: Dockerfile

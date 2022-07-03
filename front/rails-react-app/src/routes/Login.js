@@ -6,10 +6,10 @@ import { loadingToggleAction,loginAction,
 import bnr from '../images/logo.png';
 
 function Login (props) {
-	const [email, setEmail] = useState('demo@example.com');
+	const [email, setEmail] = useState('');
     let errorsObj = { email: '', password: '' };
     const [errors, setErrors] = useState(errorsObj);
-    const [password, setPassword] = useState('123456');
+    const [password, setPassword] = useState('');
 
     const dispatch = useDispatch();
 
@@ -18,24 +18,24 @@ function Login (props) {
         let error = false;
         const errorObj = { ...errorsObj };
         if (email === '') {
-            errorObj.email = 'Email is Required';
+            errorObj.email = 'Veuillez renseigner votre Email';
             error = true;
         }
         if (password === '') {
-            errorObj.password = 'Password is Required';
+            errorObj.password = 'Veuillez renseigner votre mot de passe';
             error = true;
         }
         setErrors(errorObj);
         if (error) {
 			return ;
 		}
-		dispatch(loadingToggleAction(true));	
+		dispatch(loadingToggleAction(true));
         dispatch(loginAction(email, password, props.history));
-    } 
-	
+    }
+
 	return(
 		<div className="page-wraper">
-			
+
 			<div className="page-content dlab-login" style={{backgroundImage: "url("+ bnr +")", backgroundPosition: "top right", backgroundBlendMode:"screen"}}>
 				<div className="container-fluid">
 					<div className="row">
@@ -47,7 +47,7 @@ function Login (props) {
 								<div className="tab-content nav">
 									<div id="login" className="tab-pane active">
 										<form className="dlab-form" onSubmit={onLogin}>
-											<h3 className="form-title m-t0">Welcome back, please login to your account</h3>
+											<h3 className="form-title m-t0">Re-bonjour, Connectez vous à votre compte</h3>
 											{props.errorMessage && (
 												<div className='bg-red-300 text-red-900 border border-red-900 p-1 my-2'>
 													{props.errorMessage}
@@ -62,39 +62,37 @@ function Login (props) {
 												<Link to= {"#"} className="site-button facebook btn-block"><i className="fa fa-facebook-official m-r10"></i> Log in with Facebook</Link>
 											</div> */}
 											<div className="form-group">
-												<input type="email" className="form-control" 
-													placeholder="Email Address"  
+												<input type="email" className="form-control"
+													placeholder="Adresse mail"
 													value={email}
 													onChange={(e) => setEmail(e.target.value)}
 												/>
 												{errors.email && <div className="text-danger fs-12">{errors.email}</div>}
-												
-												{/* <input name="dzName" required="" className="form-control" placeholder="Username or Email Address" type="text"/> */}
+
 											</div>
 											<div className="form-group">
-													{/*<input name="dzName" required="" className="form-control " placeholder="Type Password" type="password"/>*/}												
-													<input type="password" className="form-control" value={password} placeholder="Type Your Password"
-													onChange={(e) =>
-														setPassword(e.target.value)
-													}
-												/>
-												{errors.password && <div className="text-danger fs-12">{errors.password}</div>}
+                                                {/* <input name="dzName" required="" className="form-control " placeholder="Type Password" type="password"/> */}
+                                                <input type="password" className="form-control" value={password} placeholder="Mot de passe"
+                                                    onChange={(e) =>
+                                                        setPassword(e.target.value)
+                                                    }
+                                                />
 											</div>
 											<div className="form-group field-btn text-left">
 												<div className="input-block">
 													<input id="check1" type="checkbox" />
-													<label htmlFor="check1">Remember me</label>
+													<label htmlFor="check1">Se souvenir </label>
 												</div>
-												<Link data-toggle="tab" to="#forgot-password" className="btn-link forgot-password"> Forgot Password</Link>
+												<Link data-toggle="tab" to="#forgot-password" className="btn-link forgot-password">Mot de passe oublié ?</Link>
 											</div>
 											<div className="form-group">
-												<button type="submit" className="site-button btn-block button-md">login</button>
+												<button type="submit" className="site-button btn-block button-md">Se connecter</button>
 											</div>
 											<div className="form-group">
-												<p className="info-bottom">Don’t have an account? <Link to="register" className="btn-link">Register</Link> </p>
+												<p className="info-bottom">Pas encore de compte ? <Link to="register" className="btn-link">inscription</Link> </p>
 											</div>
 										</form>
-									</div>									
+									</div>
 								</div>
 							</div>
 						</div>
@@ -104,19 +102,19 @@ function Login (props) {
 									<li>
 										<div className="dlab-box">
 											<i className="fa fa-bullhorn"></i>
-											<p>Get personalized advice from the friends and travel experts you trust</p>
+											<p>Obtenez des conseils personnalisés de la part des amis et des experts en voyage en qui vous avez confiance.</p>
 										</div>
 									</li>
 									<li>
 										<div className="dlab-box">
 											<i className="fa fa-car"></i>
-											<p>Easily find hotels, things to do & restaurants that are right fr you</p>
+											<p>Trouvez facilement les hôtels, les activités et les restaurants qui vous conviennent.</p>
 										</div>
 									</li>
 									<li>
 										<div className="dlab-box">
 											<i className="fa fa-check"></i>
-											<p>It's everything you need to know</p>
+											<p>C'est tout ce que vous devez savoir</p>
 										</div>
 									</li>
 								</ul>
@@ -126,7 +124,6 @@ function Login (props) {
 				</div>
 			</div>
 		</div>
-		
 	)
 }
 const mapStateToProps = (state) => {

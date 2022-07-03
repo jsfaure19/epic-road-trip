@@ -8,26 +8,31 @@ import {
 export function signUp(email, password) {
     //axios call
     const postData = {
-        email,
-        password,
-        returnSecureToken: true,
-    };
+        user:{
+        email:email,
+        password:password,
+/*         returnSecureToken: true,
+ */    }};
     return axios.post(
-        ``/* API bdd pour connexion  */,
+        `http://localhost:3001/users`,
         postData,
-    );
+    ).then((response) => {
+
+      });
 }
 
 export function login(email, password) {
     const postData = {
-        email,
-        password,
-        returnSecureToken: true,
-    };
+        user:{
+            email:email,
+            password:password,
+    }};
     return axios.post(
-        ``, /* API bdd pour connexion */
+        `http://localhost:3001/users/sign_in`,
         postData,
-    );
+    ).then((response) => {
+
+      });
 }
 
 export function formatError(errorResponse) {

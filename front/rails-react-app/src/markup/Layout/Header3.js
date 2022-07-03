@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import  {Link} from 'react-router-dom';
+//import Logout from './Logout';
 
 class Header3 extends Component{
 	componentDidMount() {
@@ -45,15 +46,20 @@ class Header3 extends Component{
 								<span></span>
 								<span></span>
 							</button>
+							<div className="extra-nav">
+								<div className="extra-cell">
+ 									{/* <Logout /> */}									
+ 								</div>
+							</div>
+							
 							<div className="header-nav navbar-collapse collapse myNavbar justify-content-end" id="navbarNavDropdown">
 								<ul className="nav navbar-nav">
-									<li><Link to={"/homepage"}>Accueil<span className="tag-new">New</span></Link></li>
-
+									<li><Link to={"/homepage"}>Accueil</Link></li>
+									<li><Link to={"/profil"}>Profil<span className="tag-new">New</span></Link></li>
 									<li className="down"><Link to={"#"}>Comptes <i className="fa fa-chevron-down"></i></Link>
 										<ul className="sub-menu">
-											<li><Link to={"/register"}>S'enregistrer</Link></li>
+											<li><Link to={"/login/register"}>S'enregistrer</Link></li>
 											<li><Link to={"/login"}>Se connecter</Link></li>
-											<li><Link to={"/"}>Se déconnecter<span className="tag-new">TODO</span></Link></li>
 										</ul>
 									</li>
 									<li><Link to={"/contact-us"}>Nous contacter</Link></li>

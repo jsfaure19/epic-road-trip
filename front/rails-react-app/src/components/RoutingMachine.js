@@ -30,6 +30,21 @@ const CreateRoutingMachineLayer = (props) => {
     }
   };
 
+  const getCompletePoint = (lat, lng) => {
+    const { departure, arrival, waypoints } = props;
+    let finalWaypoints = [];
+
+    finalWaypoints.push(departure);
+    waypoints.forEach((waypoint) => {
+      if (!waypoint.disabled) finalWaypoints.push(waypoint);
+    });
+    finalWaypoints.push(arrival);
+    const res = finalWaypoints.find(
+      (wayp) => wayp.lat === lat && wayp.long === lng
+    );
+    return res;
+  };
+
   const instance = L.Routing.control({
     waypoints: renderWaypoints(),
     lineOptions: {
@@ -44,34 +59,27 @@ const CreateRoutingMachineLayer = (props) => {
     router: L.Routing.graphHopper("cf060103-c01e-442f-83df-d007fb0690f8", {
       urlParameters: { vehicle: props.locomotionType, locale: "fr_FR" },
     }),
-    // geocoder: L.Control.Geocoder.nominatim(),
     createMarker: function (index, waypoint, totalWaypoints) {
       const marker = L.marker(waypoint.latLng, {
         draggable: true,
         bounceOnAddOptions: {
           duration: 1000,
           height: 800,
-          function() {
-            console.log("toto");
-          },
         },
         icon: L.icon({
           iconUrl: renderMarkerIcon(index, totalWaypoints),
           iconSize: [30, 30],
-          // iconAnchor: [30, 30],
-          // popupAnchor: [-3, -76],
-          // shadowSize: [30, 30],
-          // shadowAnchor: [30, 30],
         }),
       }).on("click", function (e) {
-        console.log("tata");
+        const { lat, lng } = waypoint.latLng;
+        const res = getCompletePoint(lat, lng);
+        props.setSelectedPoint(res);
       });
       return marker;
     },
     showAlternatives: false,
   });
-  console.log("iNSTANCE", instance);
-  console.log("props.locomotiontype", props.locomotionType);
+
   return instance;
 };
 
